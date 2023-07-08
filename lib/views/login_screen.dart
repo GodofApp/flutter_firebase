@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_controller.dart';
+import 'package:flutter_firebase/views/dashboard.dart';
 import 'package:flutter_firebase/views/rounded_button.dart';
 import 'package:get/get.dart';
 
@@ -76,9 +77,9 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                    if(phoneMailEditingController.text.isNotEmpty && passwordEditingController.text.isNotEmpty){
                      if(AuthController.instance.isEmailVerified(phoneMailEditingController.text)){
-                       AuthController.instance.login(phoneMailEditingController.text, passwordEditingController.text.isNotEmpty).then((value) => {
+                       AuthController.instance.login(phoneMailEditingController.text, passwordEditingController.text).then((value) => {
                          if(value.additionalUserInfo != null){
-                           Get.offAllNamed("/dashboard"),
+                            Get.offAll(DashBoard()),
                          }
                        });
                      }else{

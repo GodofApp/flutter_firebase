@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class AlertDialogTask extends StatelessWidget {
 
-  TodoController todoController = Get.find();
+  TodoController todoController = Get.find<TodoController>();
   String id,taskName,taskDesc;
 
   AlertDialogTask({Key? key,required this.id,required this.taskName,required this.taskDesc}) : super(key: key){

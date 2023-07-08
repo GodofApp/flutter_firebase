@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_controller.dart';
 import 'package:flutter_firebase/views/alert_dialog.dart';
 import 'package:flutter_firebase/views/rounded_button.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
 import '../colors.dart';
@@ -20,14 +21,13 @@ class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: todoController.formKey,
         appBar: AppBar(
           title: const Text("Dashboard"),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             showDialog(
-              context: todoController.formKey.currentContext!,
+              context: context,
               builder: (BuildContext context) {
                 return AlertDialogTask(id: "",taskName: "",taskDesc: "",);
               },
@@ -45,9 +45,7 @@ class DashBoard extends StatelessWidget {
                 colour: Colors.lightBlueAccent,
                 title: 'Sign Out',
                 onPressed: () {
-                  AuthController.instance.signOut().then((value) => {
-                    Get.offAllNamed("/homeScreen"),
-                  });
+                  AuthController.instance.signOut(context);
                 },
               ),
 
@@ -100,7 +98,7 @@ class DashBoard extends StatelessWidget {
                              InkWell(
                                onTap: (){
                                  showDialog(
-                                   context: todoController.formKey.currentContext!,
+                                   context: context,
                                    builder: (context) {
                                   return AlertDialogTask(id: todoController.taskList.elementAt(index).docId.toString()
                                      ,taskName: todoController.taskList.elementAt(index).taskName.toString()

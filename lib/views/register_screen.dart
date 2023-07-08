@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_controller.dart';
+import 'package:flutter_firebase/views/dashboard.dart';
 import 'package:flutter_firebase/views/rounded_button.dart';
 import 'package:get/get.dart';
 
@@ -96,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
                       AuthController.instance.register(
                           phoneOrEmail.text, passwordEditingController.text).then((value) => {
                             if(value.additionalUserInfo != null){
-                              Get.offAllNamed("/dashboard"),
+                              Get.offAll(DashBoard()),
                             }
                       });
                     }else{

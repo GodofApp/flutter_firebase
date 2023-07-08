@@ -5,25 +5,20 @@ import 'package:flutter_firebase/model/task_model.dart';
 import 'package:get/get.dart';
 
 class TodoController extends GetxController{
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   late CollectionReference collectionReference;
 
-  RxList<TaskModel> taskList = RxList<TaskModel>([]);
+  var taskList = List<TaskModel>.empty(growable: true).obs;
 
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescController = TextEditingController();
 
-
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      taskList.bindStream(todoStream());
-    });
-    // formKey.currentState!.save();
+    taskList.bindStream(todoStream());
   }
 
 
@@ -42,7 +37,7 @@ class TodoController extends GetxController{
   Stream<List<TaskModel>> todoStream() {
     return firebaseFirestore
         .collection('users')
-        .doc(AuthController.instance.auth.currentUser!.uid)
+        .doc(AuthController.instance.auth.currentUser?.uid)
         .collection('tasks')
         .snapshots()
         .map((QuerySnapshot query) {

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_controller.dart';
+import 'package:flutter_firebase/views/CustomSplash.dart';
 import 'package:flutter_firebase/views/home_screen.dart';
 import 'package:flutter_firebase/routes.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const CustomSplash(),
     );
   }
 }

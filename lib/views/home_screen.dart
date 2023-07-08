@@ -1,9 +1,11 @@
  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/controller/auth_controller.dart';
 import 'package:flutter_firebase/views/rounded_button.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
+
    const HomeScreen({Key? key}) : super(key: key);
 
    @override
@@ -19,6 +21,25 @@ class HomeScreen extends StatelessWidget {
            mainAxisAlignment: MainAxisAlignment.center,
            crossAxisAlignment: CrossAxisAlignment.stretch,
            children: [
+             Visibility(
+               visible: false,
+               child: RoundedButton(
+                 colour: Colors.lightBlueAccent,
+                 title: 'Login with phone',
+                 onPressed: () {
+                   Get.toNamed("/mobileNumber");
+                 },
+               ),
+             ),
+
+             RoundedButton(
+               colour: Colors.lightBlueAccent,
+               title: 'Log In With Google',
+               onPressed: () {
+                 AuthController.instance.signInWithGoogle();
+               },
+             ),
+
              RoundedButton(
                colour: Colors.lightBlueAccent,
                title: 'Log In',
@@ -26,6 +47,7 @@ class HomeScreen extends StatelessWidget {
                  Get.toNamed("/loginScreen");
                },
              ),
+
              RoundedButton(
                colour: Colors.lightBlueAccent,
                title: 'Register',
