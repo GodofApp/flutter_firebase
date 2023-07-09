@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_controller.dart';
 import 'package:flutter_firebase/views/alert_dialog.dart';
 import 'package:flutter_firebase/views/rounded_button.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
 import '../colors.dart';
